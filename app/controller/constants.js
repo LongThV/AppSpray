@@ -11,7 +11,8 @@ export default constants = {
         confirm: 'ConfirmPassScreen',
         login: 'LoginScreen',
         home: 'HomeScreen',
-        tabNavigation: 'TabNavigation'
+        tabNavigation: 'TabNavigation',
+        changeProfile: 'ChangeProfileScreen'
     },
     image: {
         background: require('../assets/images/img_background.png'),

@@ -6,7 +6,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import HomeScreen from '../screens/Home'
 import HistoryScreen from '../screens/History'
 import ScanScreen from '../screens/Scan'
-import ChargeScreen from '../screens/Charge'
+import CovertNavigation from './CovertNavigation'
 import ProfileScreen from '../screens/Profile'
 import constants from '../../controller/constants'
 
@@ -26,7 +26,7 @@ const TabNavigation = () => {
                         case 'History':
                             iconName = focused ? 'ios-timer' : 'ios-timer-outline'
                             break
-                        case 'Charge':
+                        case 'Covert':
                             iconName = focused ? 'ios-git-compare' : 'ios-git-compare-outline'
                             break
                         case 'Profile':
@@ -66,7 +66,7 @@ const TabNavigation = () => {
                     )
                 }}
             />
-            <Tab.Screen name='Charge' component={ChargeScreen} options={{ title: 'Charger' }} />
+            <Tab.Screen name='Covert' component={CovertNavigation} options={{ title: 'Covert' }} />
             <Tab.Screen name='Profile' component={ProfileScreen} options={{ title: 'Thông tin' }} />
         </Tab.Navigator>
     )

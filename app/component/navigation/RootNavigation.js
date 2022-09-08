@@ -8,13 +8,14 @@ import ConfirmPassScreen from '../auth/ConfirmPass'
 import VerificationScreen from '../auth/Verification'
 import LoginScreen from '../auth/Login'
 import TabNavigation from './TabNavigation'
+import ChargeNavigation from './CovertNavigation'
 
 const Stack = createStackNavigator()
 
 const RootNavigation = () => {
     return (
         <Stack.Navigator
-            initialRouteName='RegisterScreen'
+            initialRouteName='LoginScreen'
             screenOptions={{
                 headerTintColor: 'red',
                 headerStyle: {

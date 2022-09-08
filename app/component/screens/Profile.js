@@ -7,6 +7,7 @@ import Background from '../common/Background'
 import HeaderShort from '../common/HeaderShort'
 import constants from '../../controller/constants'
 import ImgQrCode from '../../component/common/ImgQrCode'
+import { useNavigation } from '@react-navigation/native'
 
 let dataQRCode = {
     phone: {
@@ -22,6 +23,7 @@ let dataQRCode = {
 }
 
 const ProfileScreen = () => {
+    const navigation = useNavigation()
     const [isModalVisible, setModalVisible] = useState(false)
     const [dataQR, setDataQR] = useState([])
     const [isSwitchOn, setIsSwitchOn] = useState(false)
@@ -38,104 +40,96 @@ const ProfileScreen = () => {
     }
 
     return (
-        <>
-            <ScrollView style={styles.container}>
-                <Background />
-                <ImgQrCode
-                    isModalVisible={isModalVisible}
-                    setModalVisible={(value) => setModalVisible(value)}
-                    dataQR={dataQR}
-                />
-                <HeaderShort name='Profile' />
-                <View style={styles.boxProfile}>
-                    <Image source={constants.image.imgAvatar} style={styles.imgAvatar} />
-                    <View style={styles.boxInforUser}>
-                        <Image source={constants.image.icQrCode} style={styles.imgQrcode} />
-                        <View style={styles.inforUser}>
-                            <Text style={styles.textUser}>Jonathan Doe</Text>
-                            <Text style={styles.textPhone}>No.0912-339-3493</Text>
-                        </View>
-                    </View>
-                    <View style={styles.boxQrCode}>
-                        <TouchableOpacity onPress={onQrcodePhone} style={styles.buttonQr}>
-                            <Image
-                                source={constants.image.icQrCode}
-                                style={styles.imgQrcodeInButton}
-                            />
-                            <View style={styles.boxTextQr}>
-                                <Text style={styles.textOnQr}>NexusPoint</Text>
-                                <Text style={styles.textQr}>QR Code</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={onQrcodeWallet} style={styles.buttonQr}>
-                            <Image
-                                source={constants.image.icQrCode}
-                                style={styles.imgQrcodeInButton}
-                            />
-                            <View style={styles.boxTextQr}>
-                                <Text style={styles.textOnQr}>NEXToken</Text>
-                                <Text style={styles.textQr}>QR Code</Text>
-                            </View>
-                        </TouchableOpacity>
+        <ScrollView style={styles.container}>
+            <Background />
+            <ImgQrCode
+                isModalVisible={isModalVisible}
+                setModalVisible={(value) => setModalVisible(value)}
+                dataQR={dataQR}
+            />
+            <HeaderShort name='Profile' />
+            <View style={styles.boxProfile}>
+                <Image source={constants.image.imgAvatar} style={styles.imgAvatar} />
+                <View style={styles.boxInforUser}>
+                    <Image source={constants.image.icQrCode} style={styles.imgQrcode} />
+                    <View style={styles.inforUser}>
+                        <Text style={styles.textUser}>Jonathan Doe</Text>
+                        <Text style={styles.textPhone}>No.0912-339-3493</Text>
                     </View>
                 </View>
-                <View style={{ marginBottom: 20 }}>
-                    <TouchableOpacity style={{ ...styles.button, justifyContent: 'space-between' }}>
-                        <View style={styles.boxIconText}>
-                            <Image
-                                source={constants.image.icAuthentication}
-                                style={styles.icButton}
-                            />
-                            <Text style={styles.textButton}>2 Factor Authentication</Text>
-                        </View>
-                        <View>
-                            <Switch
-                                value={isSwitchOn}
-                                onValueChange={onToggleSwitch}
-                                color='#7879E8'
-                                style={{ marginRight: 15 }}
-                            />
+                <View style={styles.boxQrCode}>
+                    <TouchableOpacity onPress={onQrcodePhone} style={styles.buttonQr}>
+                        <Image source={constants.image.icQrCode} style={styles.imgQrcodeInButton} />
+                        <View style={styles.boxTextQr}>
+                            <Text style={styles.textOnQr}>NexusPoint</Text>
+                            <Text style={styles.textQr}>QR Code</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ ...styles.button, justifyContent: 'space-between' }}>
-                        <View style={styles.boxIconText}>
-                            <Image source={constants.image.icProfile} style={styles.icButton} />
-                            <Text style={styles.textButton}>Change Profile</Text>
+                    <TouchableOpacity onPress={onQrcodeWallet} style={styles.buttonQr}>
+                        <Image source={constants.image.icQrCode} style={styles.imgQrcodeInButton} />
+                        <View style={styles.boxTextQr}>
+                            <Text style={styles.textOnQr}>NEXToken</Text>
+                            <Text style={styles.textQr}>QR Code</Text>
                         </View>
-                        <Image source={constants.image.icNext} style={styles.icNext} />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ ...styles.button, justifyContent: 'space-between' }}>
-                        <View style={styles.boxIconText}>
-                            <Image source={constants.image.icPayment} style={styles.icButton} />
-                            <Text style={styles.textButton}>Payment History</Text>
-                        </View>
-                        <Image source={constants.image.icNext} style={styles.icNext} />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ ...styles.button, justifyContent: 'space-between' }}>
-                        <View style={styles.boxIconText}>
-                            <Image source={constants.image.icSetting} style={styles.icButton} />
-                            <Text style={styles.textButton}>Setting</Text>
-                        </View>
-                        <Image source={constants.image.icNext} style={styles.icNext} />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ ...styles.button, justifyContent: 'space-between' }}>
-                        <View style={styles.boxIconText}>
-                            <Image source={constants.image.icTerms} style={styles.icButton} />
-                            <Text style={styles.textButton}>Terms of Services</Text>
-                        </View>
-                        <Image source={constants.image.icNext} style={styles.icNext} />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.button}>
-                        <Image source={constants.image.icHelp} style={styles.icButton} />
-                        <Text style={styles.textButtonLight}>Help & Support</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.button}>
-                        <Image source={constants.image.icLogout} style={styles.icButton} />
-                        <Text style={styles.textButtonLight}>Logout</Text>
                     </TouchableOpacity>
                 </View>
-            </ScrollView>
-        </>
+            </View>
+            <View style={{ marginBottom: 20 }}>
+                <TouchableOpacity style={{ ...styles.button, justifyContent: 'space-between' }}>
+                    <View style={styles.boxIconText}>
+                        <Image source={constants.image.icAuthentication} style={styles.icButton} />
+                        <Text style={styles.textButton}>2 Factor Authentication</Text>
+                    </View>
+                    <View>
+                        <Switch
+                            value={isSwitchOn}
+                            onValueChange={onToggleSwitch}
+                            color='#7879E8'
+                            style={{ marginRight: 15 }}
+                        />
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate(constants.screenName.changeProfile)}
+                    style={{ ...styles.button, justifyContent: 'space-between' }}
+                >
+                    <View style={styles.boxIconText}>
+                        <Image source={constants.image.icProfile} style={styles.icButton} />
+                        <Text style={styles.textButton}>Change Profile</Text>
+                    </View>
+                    <Image source={constants.image.icNext} style={styles.icNext} />
+                </TouchableOpacity>
+                <TouchableOpacity style={{ ...styles.button, justifyContent: 'space-between' }}>
+                    <View style={styles.boxIconText}>
+                        <Image source={constants.image.icPayment} style={styles.icButton} />
+                        <Text style={styles.textButton}>Payment History</Text>
+                    </View>
+                    <Image source={constants.image.icNext} style={styles.icNext} />
+                </TouchableOpacity>
+                <TouchableOpacity style={{ ...styles.button, justifyContent: 'space-between' }}>
+                    <View style={styles.boxIconText}>
+                        <Image source={constants.image.icSetting} style={styles.icButton} />
+                        <Text style={styles.textButton}>Setting</Text>
+                    </View>
+                    <Image source={constants.image.icNext} style={styles.icNext} />
+                </TouchableOpacity>
+                <TouchableOpacity style={{ ...styles.button, justifyContent: 'space-between' }}>
+                    <View style={styles.boxIconText}>
+                        <Image source={constants.image.icTerms} style={styles.icButton} />
+                        <Text style={styles.textButton}>Terms of Services</Text>
+                    </View>
+                    <Image source={constants.image.icNext} style={styles.icNext} />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button}>
+                    <Image source={constants.image.icHelp} style={styles.icButton} />
+                    <Text style={styles.textButtonLight}>Help & Support</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button}>
+                    <Image source={constants.image.icLogout} style={styles.icButton} />
+                    <Text style={styles.textButtonLight}>Logout</Text>
+                </TouchableOpacity>
+            </View>
+        </ScrollView>
     )
 }
 
