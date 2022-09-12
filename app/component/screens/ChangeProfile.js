@@ -16,7 +16,6 @@ import Background from '../common/Background'
 import HeaderBack from '../common/HeaderBack'
 import Constants from '../../controller/Constants'
 import CommonAPIs from '../../controller/APIs/CommonAPIs'
-import AppManager from '../../controller/APIs/AppManager'
 import StorageManager from '../../controller/APIs/StorageManager'
 
 LogBox.ignoreLogs(['Animated: `useNativeDriver`', 'componentWillReceiveProps'])
