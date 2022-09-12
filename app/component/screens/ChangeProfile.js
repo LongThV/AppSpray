@@ -23,6 +23,7 @@ LogBox.ignoreLogs(['Animated: `useNativeDriver`', 'componentWillReceiveProps'])
 const ChangeProfileScreen = () => {
     const refActionSheet = useRef()
     const [profile, setProfile] = useState()
+    console.log(profile)
 
     const getAvatar = () => {
         if (
