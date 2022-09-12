@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
 import { View, Text, TouchableOpacity, Image, StyleSheet, ScrollView, Alert } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-
 import RNProgressHud from 'progress-hud'
-
 import Background from '../common/Background'
 import InputStyle from '../common/InputStyle'
-import constants from '../../controller/constants'
+import Constants from '../../controller/Constants'
 import CommonAPIs from '../../controller/APIs/CommonAPIs'
 import ShowError from '../common/ShowError'
 
@@ -28,7 +26,7 @@ const LoginScreen = () => {
         RNProgressHud.showWithStatus('Loading...')
         CommonAPIs.login(phone, pass)
             .then((res) => {
-                navigation.navigate(constants.screenName.tabNavigation)
+                navigation.navigate(Constants.screenName.tabNavigation)
             })
             .catch((err) => {
                 ShowError(err)
@@ -45,7 +43,7 @@ const LoginScreen = () => {
                 <View style={styles.content}>
                     <View style={styles.boxContent}>
                         <Text style={styles.textRegister}>Login</Text>
-                        <Image source={constants.image.icLogin} style={styles.img} />
+                        <Image source={Constants.image.icLogin} style={styles.img} />
                         <Text style={styles.textContent}>
                             Type Phone Number and Password to Continue
                         </Text>
@@ -69,7 +67,7 @@ const LoginScreen = () => {
                             <Text style={styles.textForgotPass}>Forgot Password</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            onPress={() => navigation.navigate(constants.screenName.register)}
+                            onPress={() => navigation.navigate(Constants.screenName.register)}
                             style={styles.buttonForgotPass}
                         >
                             <Text style={styles.textForgotPass}>Register</Text>
@@ -92,13 +90,13 @@ const styles = StyleSheet.create({
     },
 
     boxContent: {
-        backgroundColor: constants.color.backgroundBelow,
+        backgroundColor: Constants.color.backgroundBelow,
         width: 325,
         height: 482,
         marginHorizontal: 25,
         marginTop: 88,
         alignItems: 'center',
-        shadowColor: constants.color.shadowBlack,
+        shadowColor: Constants.color.shadowBlack,
         shadowOffset: {
             width: 0,
             height: 4
@@ -118,13 +116,13 @@ const styles = StyleSheet.create({
         fontSize: 24,
         marginTop: 37,
         marginBottom: 24,
-        fontFamily: constants.font.fontPPBold
+        fontFamily: Constants.font.fontPPBold
     },
 
     textContent: {
         fontSize: 14,
         fontWeight: 'bold',
-        color: constants.color.textContent,
+        color: Constants.color.textContent,
         marginTop: 14,
         marginBottom: 18,
         textAlign: 'center',
@@ -140,7 +138,7 @@ const styles = StyleSheet.create({
     },
 
     buttonLogin: {
-        backgroundColor: constants.color.buttonColor,
+        backgroundColor: Constants.color.buttonColor,
         width: 285,
         height: 46,
         marginTop: 11,
@@ -152,14 +150,14 @@ const styles = StyleSheet.create({
 
     textLogin: {
         fontSize: 14,
-        color: constants.color.textButtonColor,
+        color: Constants.color.textButtonColor,
         fontWeight: 'bold'
     },
 
     textForgotPass: {
         fontSize: 14,
         fontWeight: 'bold',
-        color: constants.color.buttonColor,
+        color: Constants.color.buttonColor,
         textDecorationLine: 'underline'
     },
 

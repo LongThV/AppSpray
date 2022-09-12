@@ -1,9 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet, Image } from 'react-native'
-
 import Ionicons from 'react-native-vector-icons/Ionicons'
-
-import constants from '../../controller/constants'
+import Constants from '../../controller/Constants'
 
 const Header = ({ name }) => {
     return (
@@ -14,7 +12,7 @@ const Header = ({ name }) => {
             </View>
             <View style={styles.contentBox}>
                 <View style={styles.point}>
-                    <Image source={constants.image.icRuby} style={{ marginLeft: 11.3 }} />
+                    <Image source={Constants.image.icRuby} style={{ marginLeft: 11.3 }} />
                     <View style={styles.nexusPoint}>
                         <Text style={styles.amountPoint}>23.254</Text>
                         <Text style={styles.unitPoint}>Nexus Point</Text>
@@ -31,9 +29,9 @@ const Header = ({ name }) => {
 
 const styles = StyleSheet.create({
     title: {
-        fontFamily: constants.font.fontPPBold,
+        fontFamily: Constants.font.fontPPBold,
         fontSize: 30,
-        color: constants.color.textButtonColor
+        color: Constants.color.textButtonColor
     },
     tittleHeader: {
         flexDirection: 'row',
@@ -48,23 +46,23 @@ const styles = StyleSheet.create({
         height: 45,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        backgroundColor: constants.color.backgroundBelow,
+        backgroundColor: Constants.color.backgroundBelow,
         borderRadius: 15,
         alignItems: 'center'
     },
     amountPoint: {
         fontSize: 20,
-        fontFamily: constants.font.fontPPBold
+        fontFamily: Constants.font.fontPPBold
     },
     unitPoint: {
         fontSize: 10,
-        fontFamily: constants.color.fontPPBold,
+        fontFamily: Constants.color.fontPPBold,
         position: 'absolute',
         marginTop: 20
     },
     equiv: {
         flexDirection: 'row',
-        backgroundColor: constants.color.backgroundBelow,
+        backgroundColor: Constants.color.backgroundBelow,
         borderRadius: 15,
         marginRight: 15.5,
         marginLeft: 105.5,
@@ -80,13 +78,13 @@ const styles = StyleSheet.create({
     textEquiv: {
         marginLeft: 11,
         fontSize: 12,
-        fontFamily: constants.font.fontPPBold,
-        color: constants.color.darkBlue
+        fontFamily: Constants.font.fontPPBold,
+        color: Constants.color.darkBlue
     },
     textAed: {
         marginRight: 19,
         fontSize: 15,
-        fontFamily: constants.font.fontPPBold
+        fontFamily: Constants.font.fontPPBold
     }
 })
 

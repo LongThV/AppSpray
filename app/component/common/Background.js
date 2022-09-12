@@ -1,14 +1,12 @@
 import React from 'react'
 import { View, Image, StyleSheet } from 'react-native'
-
-import constants from '../../controller/constants'
-
+import Constants from '../../controller/Constants'
 const Background = ({ color = '#F7F7F7' }) => {
     return (
         <View style={{ ...styles.container, backgroundColor: color }}>
-            <Image source={constants.image.background} style={styles.img} />
+            <Image source={Constants.image.background} style={styles.img} />
             <View style={styles.belowBackground}>
-                <Image source={constants.image.imgSpray} style={styles.img2} />
+                <Image source={Constants.image.imgSpray} style={styles.img2} />
             </View>
         </View>
     )
@@ -30,7 +28,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-end',
         alignItems: 'center',
-        marginBottom: 75
+        marginBottom: 50
     },
     img2: {
         width: 228,

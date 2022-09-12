@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native'
-
 import Background from '../common/Background'
 import Header from '../common/Header'
-import constants from '../../controller/constants'
+import Constants from '../../controller/Constants'
 import Categories from '../common/Categories'
 import StoreCategories from '../common/StoreCategories'
 
@@ -14,15 +13,15 @@ const HomeScreen = () => {
             <Header name={'HOME'} />
             <View style={styles.payment}>
                 <TouchableOpacity style={styles.buttonPayment}>
-                    <Image source={constants.image.icScan} style={{ marginTop: 10 }} />
+                    <Image source={Constants.image.icScan} style={{ marginTop: 10 }} />
                     <Text style={styles.textPayment}>Scan</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.buttonPayment}>
-                    <Image source={constants.image.icSend} style={{ marginTop: 10 }} />
+                    <Image source={Constants.image.icSend} style={{ marginTop: 10 }} />
                     <Text style={styles.textPayment}>Send</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.buttonPayment}>
-                    <Image source={constants.image.icReceive} style={{ marginTop: 10 }} />
+                    <Image source={Constants.image.icReceive} style={{ marginTop: 10 }} />
                     <Text style={styles.textPayment}>Receive</Text>
                 </TouchableOpacity>
             </View>
@@ -42,10 +41,10 @@ const styles = StyleSheet.create({
         flex: 1
     },
     buttonPayment: {
-        backgroundColor: constants.color.backgroundBelow,
+        backgroundColor: Constants.color.backgroundBelow,
         width: 76,
         height: 76,
-        shadowColor: constants.color.shadowBlack,
+        shadowColor: Constants.color.shadowBlack,
         shadowOffset: {
             width: 0,
             height: 4
@@ -66,7 +65,7 @@ const styles = StyleSheet.create({
     },
     textPayment: {
         fontSize: 14,
-        fontFamily: constants.font.fontPPMedium,
+        fontFamily: Constants.font.fontPPMedium,
         marginTop: 7
     },
     boxCategories: {

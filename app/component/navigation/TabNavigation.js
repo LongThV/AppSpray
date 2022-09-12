@@ -2,13 +2,12 @@ import React from 'react'
 import { Image } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-
 import HomeScreen from '../screens/Home'
 import HistoryScreen from '../screens/History'
 import ScanScreen from '../screens/Scan'
-import CovertNavigation from './CovertNavigation'
-import ProfileScreen from '../screens/Profile'
-import constants from '../../controller/constants'
+import ProfileNavigation from './ProfileNavigation'
+import CovertScreen from '../screens/Convert'
+import Constants from '../../controller/Constants'
 
 const Tab = createBottomTabNavigator()
 
@@ -37,16 +36,16 @@ const TabNavigation = () => {
                     }
                     return <Ionicons name={iconName} size={size} color={color} />
                 },
-                tabBarActiveTintColor: constants.color.textTabActive,
-                tabBarInactiveTintColor: constants.color.textTabNoActive,
+                tabBarActiveTintColor: Constants.color.textTabActive,
+                tabBarInactiveTintColor: Constants.color.textTabNoActive,
                 tabBarStyle: {
-                    backgroundColor: constants.color.backgroundBelow,
+                    backgroundColor: Constants.color.backgroundBelow,
                     height: 70,
                     paddingBottom: 10
                 },
                 tabBarLabelStyle: {
                     fontSize: 13,
-                    fontFamily: constants.font.fontPPMedium
+                    fontFamily: Constants.font.fontPPMedium
                 },
                 headerShown: false
             })}
@@ -66,8 +65,12 @@ const TabNavigation = () => {
                     )
                 }}
             />
-            <Tab.Screen name='Covert' component={CovertNavigation} options={{ title: 'Covert' }} />
-            <Tab.Screen name='Profile' component={ProfileScreen} options={{ title: 'Thông tin' }} />
+            <Tab.Screen name='Covert' component={CovertScreen} options={{ title: 'Covert' }} />
+            <Tab.Screen
+                name='Profile'
+                component={ProfileNavigation}
+                options={{ title: 'Thông tin' }}
+            />
         </Tab.Navigator>
     )
 }

@@ -1,10 +1,8 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-
 import Ionicons from 'react-native-vector-icons/Ionicons'
-
-import constants from '../../controller/constants'
+import Constants from '../../controller/Constants'
 
 const HeaderBack = ({ name }) => {
     const navigation = useNavigation()
@@ -23,9 +21,9 @@ const HeaderBack = ({ name }) => {
 
 const styles = StyleSheet.create({
     title: {
-        fontFamily: constants.font.fontPPBold,
+        fontFamily: Constants.font.fontPPSemiBold,
         fontSize: 30,
-        color: constants.color.textButtonColor
+        color: Constants.color.white
     },
     tittleHeader: {
         flexDirection: 'row',

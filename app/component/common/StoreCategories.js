@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native'
-
 import RNProgressHud from 'progress-hud'
-
-import constants from '../../controller/constants'
+import Constants from '../../controller/Constants'
 import CommonAPIs from '../../controller/APIs/CommonAPIs'
 
 const StoreCategories = () => {
@@ -78,11 +76,11 @@ const styles = StyleSheet.create({
     },
     textSpecial: {
         fontSize: 16,
-        fontFamily: constants.font.fontPPBold,
-        color: constants.color.header
+        fontFamily: Constants.font.fontPPBold,
+        color: Constants.color.header
     },
     textSeeAllSpecial: {
-        fontFamily: constants.font.fontPPRegular,
+        fontFamily: Constants.font.fontPPRegular,
         fontSize: 14,
         marginRight: 17
     },
@@ -96,9 +94,9 @@ const styles = StyleSheet.create({
         left: 16
     },
     textFood: {
-        fontFamily: constants.font.fontPPBold,
+        fontFamily: Constants.font.fontPPBold,
         fontSize: 14,
-        color: constants.color.white,
+        color: Constants.color.white,
         marginLeft: 5
     },
     imgBackgroundFood: {

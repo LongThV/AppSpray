@@ -9,12 +9,10 @@ import {
     Alert,
     ScrollView
 } from 'react-native'
-
 import { useNavigation } from '@react-navigation/native'
 import RNProgressHud from 'progress-hud'
-
 import Background from '../common/Background'
-import constants from '../../controller/constants'
+import Constants from '../../controller/Constants'
 import CommonAPIs from '../../controller/APIs/CommonAPIs'
 
 const validatePhone = (phone) => {
@@ -42,7 +40,7 @@ const RegisterScreen = () => {
 
         CommonAPIs.register(phone)
             .then((res) => {
-                navigation.navigate(constants.screenName.verification, {
+                navigation.navigate(Constants.screenName.verification, {
                     accessToken: res.data.access_token,
                     phone
                 })
@@ -62,13 +60,13 @@ const RegisterScreen = () => {
                 <View style={styles.content}>
                     <View style={styles.button}>
                         <Text style={styles.textRegister}>Register</Text>
-                        <Image source={constants.image.icRegister} />
+                        <Image source={Constants.image.icRegister} />
                         <Text style={styles.textContent}>
                             Input Phone Number to Continue the registration
                         </Text>
                         <View style={styles.boxSDT}>
                             <View style={styles.firstBox}>
-                                <Image source={constants.image.icJapan} />
+                                <Image source={Constants.image.icJapan} />
                                 <Text style={styles.textPhone}>+81</Text>
                             </View>
                             <View style={styles.lastBox}>
@@ -77,7 +75,7 @@ const RegisterScreen = () => {
                                     onChangeText={(value) => setPhone(value)}
                                     style={styles.textPhone}
                                     placeholder='+123 456 789'
-                                    placeholderTextColor={constants.color.inputNoActive}
+                                    placeholderTextColor={Constants.color.inputNoActive}
                                     maxLength={12}
                                 />
                             </View>
@@ -88,7 +86,7 @@ const RegisterScreen = () => {
                     </View>
                     <TouchableOpacity
                         style={styles.buttonLogin}
-                        onPress={() => navigation.navigate(constants.screenName.login)}
+                        onPress={() => navigation.navigate(Constants.screenName.login)}
                     >
                         <Text style={styles.textLogin}>Login</Text>
                     </TouchableOpacity>
@@ -109,12 +107,12 @@ const styles = StyleSheet.create({
     },
     button: {
         flex: 1,
-        backgroundColor: constants.color.backgroundBelow,
+        backgroundColor: Constants.color.backgroundBelow,
         marginHorizontal: 15,
         marginTop: 88,
         borderRadius: 20,
         alignItems: 'center',
-        shadowColor: constants.color.shadowBlack,
+        shadowColor: Constants.color.shadowBlack,
         shadowOffset: {
             width: 0,
             height: 4
@@ -129,16 +127,16 @@ const styles = StyleSheet.create({
         height: 141
     },
     textRegister: {
-        fontFamily: constants.font.fontPPBold,
+        fontFamily: Constants.font.fontPPBold,
         fontSize: 24,
         marginTop: 38,
         marginBottom: 31
     },
 
     textContent: {
-        fontFamily: constants.font.fontPPMedium,
+        fontFamily: Constants.font.fontPPMedium,
         fontSize: 14,
-        color: constants.color.textContent,
+        color: Constants.color.textContent,
         marginTop: 25,
         marginBottom: 39,
         textAlign: 'center',
@@ -154,13 +152,13 @@ const styles = StyleSheet.create({
         borderRadius: 40,
         width: 285,
         height: 50,
-        borderColor: constants.color.borderColor,
+        borderColor: Constants.color.borderColor,
         alignItems: 'center'
     },
     firstBox: {
         height: 40,
         borderRightWidth: 1,
-        borderColor: constants.color.borderColor,
+        borderColor: Constants.color.borderColor,
         marginLeft: 15,
         flexDirection: 'row',
         alignItems: 'center'
@@ -169,7 +167,7 @@ const styles = StyleSheet.create({
         marginLeft: 15
     },
     boxContinue: {
-        backgroundColor: constants.color.buttonColor,
+        backgroundColor: Constants.color.buttonColor,
         width: 285,
         height: 46,
         marginVertical: 22,
@@ -179,8 +177,8 @@ const styles = StyleSheet.create({
     },
     textContinue: {
         fontSize: 14,
-        color: constants.color.textButtonColor,
-        fontFamily: constants.font.fontPPMedium
+        color: Constants.color.textButtonColor,
+        fontFamily: Constants.font.fontPPMedium
     },
     buttonLogin: {
         justifyContent: 'center',
@@ -189,12 +187,12 @@ const styles = StyleSheet.create({
     },
     textLogin: {
         fontSize: 14,
-        color: constants.color.buttonColor,
+        color: Constants.color.buttonColor,
         textDecorationLine: 'underline'
     },
     textPhone: {
         fontSize: 16,
-        color: constants.color.inputActive
+        color: Constants.color.inputActive
     }
 })
 

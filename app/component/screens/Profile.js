@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native'
-
+import CommonAPIs from '../../controller/APIs/CommonAPIs'
 import { Switch } from 'react-native-paper'
-
 import Background from '../common/Background'
 import HeaderShort from '../common/HeaderShort'
-import constants from '../../controller/constants'
+import Constants from '../../controller/Constants'
 import ImgQrCode from '../../component/common/ImgQrCode'
 import { useNavigation } from '@react-navigation/native'
 
@@ -29,6 +28,15 @@ const ProfileScreen = () => {
     const [isSwitchOn, setIsSwitchOn] = useState(false)
     const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn)
 
+    const [dataInfoUser, setDataInfoUser] = useState([])
+
+    const getAvatar = () => {
+        if (AppManager.shared.currentUser?.avatar !== '') {
+            return { uri: AppManager.shared.currentUser?.avatar }
+        }
+        return Constants.image.imgAvatarDefault
+    }
+
     const onQrcodePhone = () => {
         setDataQR(dataQRCode.phone)
         setModalVisible(true)
@@ -49,9 +57,9 @@ const ProfileScreen = () => {
             />
             <HeaderShort name='Profile' />
             <View style={styles.boxProfile}>
-                <Image source={constants.image.imgAvatar} style={styles.imgAvatar} />
+                <Image source={Constants.image.imgAvatarDefault} style={styles.imgAvatar} />
                 <View style={styles.boxInforUser}>
-                    <Image source={constants.image.icQrCode} style={styles.imgQrcode} />
+                    <Image source={Constants.image.icQrCode} style={styles.imgQrcode} />
                     <View style={styles.inforUser}>
                         <Text style={styles.textUser}>Jonathan Doe</Text>
                         <Text style={styles.textPhone}>No.0912-339-3493</Text>
@@ -59,14 +67,14 @@ const ProfileScreen = () => {
                 </View>
                 <View style={styles.boxQrCode}>
                     <TouchableOpacity onPress={onQrcodePhone} style={styles.buttonQr}>
-                        <Image source={constants.image.icQrCode} style={styles.imgQrcodeInButton} />
+                        <Image source={Constants.image.icQrCode} style={styles.imgQrcodeInButton} />
                         <View style={styles.boxTextQr}>
                             <Text style={styles.textOnQr}>NexusPoint</Text>
                             <Text style={styles.textQr}>QR Code</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={onQrcodeWallet} style={styles.buttonQr}>
-                        <Image source={constants.image.icQrCode} style={styles.imgQrcodeInButton} />
+                        <Image source={Constants.image.icQrCode} style={styles.imgQrcodeInButton} />
                         <View style={styles.boxTextQr}>
                             <Text style={styles.textOnQr}>NEXToken</Text>
                             <Text style={styles.textQr}>QR Code</Text>
@@ -77,7 +85,7 @@ const ProfileScreen = () => {
             <View style={{ marginBottom: 20 }}>
                 <TouchableOpacity style={{ ...styles.button, justifyContent: 'space-between' }}>
                     <View style={styles.boxIconText}>
-                        <Image source={constants.image.icAuthentication} style={styles.icButton} />
+                        <Image source={Constants.image.icAuthentication} style={styles.icButton} />
                         <Text style={styles.textButton}>2 Factor Authentication</Text>
                     </View>
                     <View>
@@ -90,42 +98,42 @@ const ProfileScreen = () => {
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => navigation.navigate(constants.screenName.changeProfile)}
+                    onPress={() => navigation.navigate('ChangeProfileScreen')}
                     style={{ ...styles.button, justifyContent: 'space-between' }}
                 >
                     <View style={styles.boxIconText}>
-                        <Image source={constants.image.icProfile} style={styles.icButton} />
+                        <Image source={Constants.image.icProfile} style={styles.icButton} />
                         <Text style={styles.textButton}>Change Profile</Text>
                     </View>
-                    <Image source={constants.image.icNext} style={styles.icNext} />
+                    <Image source={Constants.image.icNext} style={styles.icNext} />
                 </TouchableOpacity>
                 <TouchableOpacity style={{ ...styles.button, justifyContent: 'space-between' }}>
                     <View style={styles.boxIconText}>
-                        <Image source={constants.image.icPayment} style={styles.icButton} />
+                        <Image source={Constants.image.icPayment} style={styles.icButton} />
                         <Text style={styles.textButton}>Payment History</Text>
                     </View>
-                    <Image source={constants.image.icNext} style={styles.icNext} />
+                    <Image source={Constants.image.icNext} style={styles.icNext} />
                 </TouchableOpacity>
                 <TouchableOpacity style={{ ...styles.button, justifyContent: 'space-between' }}>
                     <View style={styles.boxIconText}>
-                        <Image source={constants.image.icSetting} style={styles.icButton} />
+                        <Image source={Constants.image.icSetting} style={styles.icButton} />
                         <Text style={styles.textButton}>Setting</Text>
                     </View>
-                    <Image source={constants.image.icNext} style={styles.icNext} />
+                    <Image source={Constants.image.icNext} style={styles.icNext} />
                 </TouchableOpacity>
                 <TouchableOpacity style={{ ...styles.button, justifyContent: 'space-between' }}>
                     <View style={styles.boxIconText}>
-                        <Image source={constants.image.icTerms} style={styles.icButton} />
+                        <Image source={Constants.image.icTerms} style={styles.icButton} />
                         <Text style={styles.textButton}>Terms of Services</Text>
                     </View>
-                    <Image source={constants.image.icNext} style={styles.icNext} />
+                    <Image source={Constants.image.icNext} style={styles.icNext} />
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button}>
-                    <Image source={constants.image.icHelp} style={styles.icButton} />
+                    <Image source={Constants.image.icHelp} style={styles.icButton} />
                     <Text style={styles.textButtonLight}>Help & Support</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button}>
-                    <Image source={constants.image.icLogout} style={styles.icButton} />
+                    <Image source={Constants.image.icLogout} style={styles.icButton} />
                     <Text style={styles.textButtonLight}>Logout</Text>
                 </TouchableOpacity>
             </View>
@@ -138,7 +146,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     boxProfile: {
-        backgroundColor: constants.color.white,
+        backgroundColor: Constants.color.white,
         alignItems: 'center',
         marginHorizontal: 20,
         borderRadius: 10,
@@ -149,7 +157,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '85%',
         borderBottomWidth: 1,
-        borderColor: constants.color.borderColor
+        borderColor: Constants.color.borderColor
     },
     imgAvatar: {
         marginTop: 35,
@@ -165,13 +173,13 @@ const styles = StyleSheet.create({
     },
     textUser: {
         fontSize: 20,
-        fontFamily: constants.font.fontPPSemiBold,
+        fontFamily: Constants.font.fontPPSemiBold,
         textAlign: 'center',
-        color: constants.color.colorText
+        color: Constants.color.colorText
     },
     textPhone: {
         fontSize: 14,
-        fontFamily: constants.font.fontPPMedium
+        fontFamily: Constants.font.fontPPMedium
     },
     boxQrCode: {
         flexDirection: 'row',
@@ -187,25 +195,25 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 10,
-        borderColor: constants.color.borderColor
+        borderColor: Constants.color.borderColor
     },
     boxTextQr: {
         marginLeft: 15
     },
     textOnQr: {
         fontSize: 10,
-        fontFamily: constants.font.fontPPSemiBold,
-        color: constants.color.colorText
+        fontFamily: Constants.font.fontPPSemiBold,
+        color: Constants.color.colorText
     },
     textQr: {
         fontSize: 16,
-        fontFamily: constants.font.fontPPSemiBold,
-        color: constants.color.colorText
+        fontFamily: Constants.font.fontPPSemiBold,
+        color: Constants.color.colorText
     },
     button: {
         flexDirection: 'row',
         marginHorizontal: 20,
-        backgroundColor: constants.color.white,
+        backgroundColor: Constants.color.white,
         alignItems: 'center',
         marginTop: 26,
         borderRadius: 10,
@@ -215,8 +223,8 @@ const styles = StyleSheet.create({
         marginVertical: 18,
         marginLeft: 12,
         fontSize: 16,
-        fontFamily: constants.font.fontPPSemiBold,
-        color: constants.color.colorText
+        fontFamily: Constants.font.fontPPSemiBold,
+        color: Constants.color.colorText
     },
     icButton: {
         marginLeft: 20

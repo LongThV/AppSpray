@@ -1,6 +1,13 @@
 import { Dimensions } from 'react-native'
-export default constants = {
+export default Constants = {
     baseURL: 'https://nexus-point-dev.test-development.work',
+
+    tokenError: 'Lỗi token',
+
+    key: {
+        currentUser: 'currentUser'
+    },
+
     screen: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height
@@ -26,7 +33,7 @@ export default constants = {
         icSend: require('../assets/images/ic_send.png'),
         icReceive: require('../assets/images/ic_receive.png'),
         icJapan: require('../assets/images/img_japan.png'),
-        imgAvatar: require('../assets/images/img_avatar.png'),
+        imgAvatarDefault: require('../assets/images/img_avatarDefault.png'),
         icQrCode: require('../assets/images/ic_qrCode.png'),
         icDownload: require('../assets/images/ic_download.png'),
         icAuthentication: require('../assets/images/ic_authentication.png'),

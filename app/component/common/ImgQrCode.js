@@ -10,15 +10,13 @@ import {
     Linking,
     Alert
 } from 'react-native'
-
 import QRCode from 'react-native-qrcode-svg'
 import RNFS from 'react-native-fs'
 import CameraRoll from '@react-native-community/cameraroll'
 import Clipboard from '@react-native-clipboard/clipboard'
 import Modal from 'react-native-modal'
-import Uti from '../../controller/APIs/Uti'
-
-import constants from '../../controller/constants'
+import Uti from '../../controller/APIs/Util'
+import Constants from '../../controller/Constants'
 
 //1. npm i react-native-svg react-native-qrcode-svg
 //2. thêm android:name="android.permission.CAMERA", android:name="android.permission.READ_EXTERNAL_STORAGE", android:name="android.permission.WRITE_EXTERNAL_STORAGE" vào AndroidManifest.xml
@@ -71,7 +69,7 @@ const ImgQrCode = ({ isModalVisible, setModalVisible, dataQR }) => {
                     style={styles.imgQrCode}
                 />
                 <TouchableOpacity onPress={downloadQRCode}>
-                    <Image source={constants.image.icDownload} style={{ marginVertical: 20 }} />
+                    <Image source={Constants.image.icDownload} style={{ marginVertical: 20 }} />
                 </TouchableOpacity>
                 <Text style={styles.textPhone}>{dataQR.data}</Text>
                 <TouchableOpacity onPress={copyPhone} style={styles.buttonCopy}>
@@ -106,24 +104,24 @@ const styles = StyleSheet.create({
     },
     textTittle: {
         fontSize: 21,
-        fontFamily: constants.font.fontPPSemiBold,
-        color: constants.color.black
+        fontFamily: Constants.font.fontPPSemiBold,
+        color: Constants.color.black
     },
     textPhone: {
         fontSize: 14,
-        fontFamily: constants.font.fontPPSemiBold,
-        color: constants.color.black
+        fontFamily: Constants.font.fontPPSemiBold,
+        color: Constants.color.black
     },
     buttonCopy: {
-        backgroundColor: constants.color.blue,
+        backgroundColor: Constants.color.blue,
         borderRadius: 20,
         marginTop: 33,
         marginBottom: 26
     },
     textCopy: {
         fontSize: 14,
-        fontFamily: constants.font.fontPPSemiBold,
-        color: constants.color.white,
+        fontFamily: Constants.font.fontPPSemiBold,
+        color: Constants.color.white,
         marginVertical: 9,
         marginHorizontal: 28
     }

@@ -1,9 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-
 import Ionicons from 'react-native-vector-icons/Ionicons'
-
-import constants from '../../controller/constants'
+import Constants from '../../controller/Constants'
 
 const HeaderShort = ({ name }) => {
     return (
@@ -16,9 +14,9 @@ const HeaderShort = ({ name }) => {
 
 const styles = StyleSheet.create({
     title: {
-        fontFamily: constants.font.fontPPBold,
+        fontFamily: Constants.font.fontPPBold,
         fontSize: 30,
-        color: constants.color.textButtonColor
+        color: Constants.color.textButtonColor
     },
     tittleHeader: {
         flexDirection: 'row',

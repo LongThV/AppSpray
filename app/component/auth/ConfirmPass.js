@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
 import { View, Text, TouchableOpacity, Image, StyleSheet, Alert, ScrollView } from 'react-native'
 import { useNavigation, useRoute } from '@react-navigation/native'
-
 import RNProgressHud from 'progress-hud'
-
 import Background from '../common/Background'
 import InputStyle from '../common/InputStyle'
-import constants from '../../controller/constants'
+import Constants from '../../controller/Constants'
 import CommonAPIs from '../../controller/APIs/CommonAPIs'
 import ShowError from '../common/ShowError'
 
@@ -35,7 +33,7 @@ const ConfirmPassScreen = () => {
         RNProgressHud.showWithStatus('Loading...')
         CommonAPIs.setPassword(phone, pass, accessToken)
             .then((res) => {
-                navigation.navigate(constants.screenName.login)
+                navigation.navigate(Constants.screenName.login)
             })
             .catch((err) => {
                 ShowError(err)
@@ -52,7 +50,7 @@ const ConfirmPassScreen = () => {
                 <View style={styles.box}>
                     <View style={styles.content}>
                         <Text style={styles.textSet}>Set your password</Text>
-                        <Image source={constants.image.icConfirm} style={styles.img} />
+                        <Image source={Constants.image.icConfirm} style={styles.img} />
                         <Text style={styles.textContent}>Input new password </Text>
                         <InputStyle
                             name={'Password'}
@@ -83,14 +81,14 @@ const styles = StyleSheet.create({
 
     content: {
         flex: 1,
-        backgroundColor: constants.color.backgroundBelow,
+        backgroundColor: Constants.color.backgroundBelow,
         width: 325,
         height: 482,
         marginHorizontal: 25,
         marginTop: 88,
         borderRadius: 20,
         alignItems: 'center',
-        shadowColor: constants.color.shadowBlack,
+        shadowColor: Constants.color.shadowBlack,
         shadowOffset: {
             width: 0,
             height: 4
@@ -109,10 +107,10 @@ const styles = StyleSheet.create({
 
     textSet: {
         fontSize: 24,
-        color: constants.color.header,
+        color: Constants.color.header,
         marginTop: 43,
         marginBottom: 40,
-        fontFamily: constants.font.fontPPBold
+        fontFamily: Constants.font.fontPPBold
     },
 
     img: {
@@ -122,10 +120,10 @@ const styles = StyleSheet.create({
 
     textContent: {
         fontSize: 14,
-        color: constants.color.textContent,
+        color: Constants.color.textContent,
         marginTop: 25,
         textAlign: 'center',
-        fontFamily: constants.font.fontPPBold,
+        fontFamily: Constants.font.fontPPBold,
         marginHorizontal: 41
     },
 
@@ -138,7 +136,7 @@ const styles = StyleSheet.create({
     },
 
     boxContinue: {
-        backgroundColor: constants.color.buttonColor,
+        backgroundColor: Constants.color.buttonColor,
         width: 285,
         height: 46,
         marginVertical: 10,
@@ -149,7 +147,7 @@ const styles = StyleSheet.create({
 
     textContinue: {
         fontSize: 14,
-        color: constants.color.textButtonColor,
+        color: Constants.color.textButtonColor,
         fontWeight: 'bold'
     }
 })

@@ -1,5 +1,5 @@
-import { PermissionsAndroid } from 'react-native'
-export default class Uti {
+import { PermissionsAndroid, Alert } from 'react-native'
+export default class Util {
     static async hasAndroidPermission() {
         const permission = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE
 
@@ -10,5 +10,14 @@ export default class Uti {
 
         const status = await PermissionsAndroid.request(permission)
         return status === 'granted'
+    }
+
+    static showError = (error) => {
+        Alert.alert(
+            'Notification',
+            error?.response?.data?.message ??
+                error?.message ??
+                'An error has occurred. Please try again!'
+        )
     }
 }

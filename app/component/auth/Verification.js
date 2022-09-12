@@ -8,12 +8,10 @@ import {
     StyleSheet,
     ScrollView
 } from 'react-native'
-
 import { useNavigation, useRoute } from '@react-navigation/native'
 import RNProgressHud from 'progress-hud'
-
 import Background from '../common/Background'
-import constants from '../../controller/constants'
+import Constants from '../../controller/Constants'
 import CommonAPIs from '../../controller/APIs/CommonAPIs'
 
 const VerificationScreen = () => {
@@ -47,7 +45,7 @@ const VerificationScreen = () => {
 
         CommonAPIs.verifyPhone(phone, code1 + code2 + code3 + code4)
             .then((res) => {
-                navigation.navigate(constants.screenName.confirm, {
+                navigation.navigate(Constants.screenName.confirm, {
                     accessToken: route.params?.accessToken,
                     phone
                 })
@@ -68,7 +66,7 @@ const VerificationScreen = () => {
                     <View style={styles.button}>
                         <Text style={styles.textRegister}>Verification</Text>
                         <View style={styles.boxImg}>
-                            <Image source={constants.image.icVerification} style={styles.img} />
+                            <Image source={Constants.image.icVerification} style={styles.img} />
                         </View>
                         <View style={styles.boxContent}>
                             <Text style={styles.textContent}>
@@ -80,7 +78,7 @@ const VerificationScreen = () => {
                                 <TextInput
                                     ref={ref1}
                                     placeholder='0'
-                                    placeholderTextColor={constants.color.inputNoActive}
+                                    placeholderTextColor={Constants.color.inputNoActive}
                                     style={styles.textCode}
                                     autoFocus={true}
                                     value={code1}
@@ -97,7 +95,7 @@ const VerificationScreen = () => {
                                 <TextInput
                                     ref={ref2}
                                     placeholder='0'
-                                    placeholderTextColor={constants.color.inputNoActive}
+                                    placeholderTextColor={Constants.color.inputNoActive}
                                     style={styles.textCode}
                                     value={code2}
                                     maxLength={1}
@@ -115,7 +113,7 @@ const VerificationScreen = () => {
                                 <TextInput
                                     ref={ref3}
                                     placeholder='0'
-                                    placeholderTextColor={constants.color.inputNoActive}
+                                    placeholderTextColor={Constants.color.inputNoActive}
                                     style={styles.textCode}
                                     value={code3}
                                     maxLength={1}
@@ -133,7 +131,7 @@ const VerificationScreen = () => {
                                 <TextInput
                                     ref={ref4}
                                     placeholder='0'
-                                    placeholderTextColor={constants.color.inputNoActive}
+                                    placeholderTextColor={Constants.color.inputNoActive}
                                     style={styles.textCode}
                                     maxLength={1}
                                     onChangeText={(value) => {
@@ -181,7 +179,7 @@ const styles = StyleSheet.create({
         marginTop: 88,
         borderRadius: 20,
         alignItems: 'center',
-        shadowColor: constants.color.shadowBlack,
+        shadowColor: Constants.color.shadowBlack,
         shadowOffset: {
             width: 0,
             height: 4
@@ -207,10 +205,10 @@ const styles = StyleSheet.create({
     textContent: {
         fontSize: 14,
         fontWeight: 'bold',
-        color: constants.color.textContent,
+        color: Constants.color.textContent,
         marginTop: 25,
         textAlign: 'center',
-        fontFamily: constants.font.fontPPMedium
+        fontFamily: Constants.font.fontPPMedium
     },
     boxContent: {
         marginHorizontal: 41
@@ -226,19 +224,19 @@ const styles = StyleSheet.create({
         height: 60,
         width: 60,
         borderWidth: 1,
-        borderColor: constants.color.borderColor,
+        borderColor: Constants.color.borderColor,
         borderRadius: 5,
         justifyContent: 'center'
     },
     textCode: {
         fontSize: 24,
-        color: constants.color.inputActive,
+        color: Constants.color.inputActive,
         textAlign: 'center',
-        fontFamily: constants.font.fontPPBold,
+        fontFamily: Constants.font.fontPPBold,
         includeFontPadding: false
     },
     boxContinue: {
-        backgroundColor: constants.color.buttonColor,
+        backgroundColor: Constants.color.buttonColor,
         width: 285,
         height: 46,
         marginVertical: 22,
@@ -248,7 +246,7 @@ const styles = StyleSheet.create({
     },
     textContinue: {
         fontSize: 14,
-        color: constants.color.textButtonColor,
+        color: Constants.color.textButtonColor,
         fontWeight: 'bold'
     },
     buttonTime: {
@@ -259,7 +257,7 @@ const styles = StyleSheet.create({
     textTime: {
         fontSize: 14,
         fontWeight: 'bold',
-        color: constants.color.buttonColor,
+        color: Constants.color.buttonColor,
         textDecorationLine: 'underline'
     },
     buttonResend: {
@@ -270,7 +268,7 @@ const styles = StyleSheet.create({
     textResend: {
         fontSize: 14,
         fontWeight: 'bold',
-        color: constants.color.textContent
+        color: Constants.color.textContent
     }
 })
 

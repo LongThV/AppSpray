@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native'
-
 import RNProgressHud from 'progress-hud'
-
-import constants from '../../controller/constants'
+import Constants from '../../controller/Constants'
 import CommonAPIs from '../../controller/APIs/CommonAPIs'
 
 const Categories = () => {
@@ -13,7 +11,7 @@ const Categories = () => {
     const getCategory = () => {
         CommonAPIs.category()
             .then((res) => {
-                setDataCategory([constants.allCategory, ...res.data])
+                setDataCategory([Constants.allCategory, ...res.data])
             })
             .catch((err) => {
                 alert(err.message)
@@ -30,7 +28,7 @@ const Categories = () => {
                 style={{
                     ...styles.buttonCategory,
                     backgroundColor:
-                        selected == item.id ? constants.color.darkBlue : constants.color.gray
+                        selected == item.id ? Constants.color.darkBlue : Constants.color.gray
                 }}
                 onPress={() => {
                     setSelected(item.id)
@@ -45,7 +43,7 @@ const Categories = () => {
                     style={{
                         ...styles.titleCategory,
                         color:
-                            selected == item.id ? constants.color.white : constants.color.darkBlue
+                            selected == item.id ? Constants.color.white : Constants.color.darkBlue
                     }}
                 >
                     {item.parent_name}
@@ -82,10 +80,10 @@ const styles = StyleSheet.create({
     },
 
     titleCategory: {
-        fontFamily: constants.font.fontRBMedium,
+        fontFamily: Constants.font.fontRBMedium,
         fontSize: 13,
         paddingRight: 15,
-        color: constants.color.darkBlue,
+        color: Constants.color.darkBlue,
         marginLeft: 4,
         paddingVertical: 7
     },

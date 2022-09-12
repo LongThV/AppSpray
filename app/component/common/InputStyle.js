@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         borderRadius: 40,
         width: 285,
         height: 40,
-        borderColor: constants.color.borderColor,
+        borderColor: Constants.color.borderColor,
         alignItems: 'flex-start',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     },
     textInput: {
         fontSize: 14,
-        color: constants.color.textContent
+        color: Constants.color.textContent
     }
 })
 

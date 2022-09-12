@@ -1,14 +1,11 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-
 import 'react-native-gesture-handler'
-
 import RegisterScreen from '../auth/Register'
 import ConfirmPassScreen from '../auth/ConfirmPass'
 import VerificationScreen from '../auth/Verification'
 import LoginScreen from '../auth/Login'
 import TabNavigation from './TabNavigation'
-import ChargeNavigation from './CovertNavigation'
 
 const Stack = createStackNavigator()
 

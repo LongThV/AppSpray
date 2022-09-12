@@ -1,10 +1,11 @@
 import axios from 'axios'
-import constants from '../constants'
+import Constants from '../Constants'
 import AppManager from './AppManager'
 import UserModel from '../model/UserModel'
+import StorageManager from './StorageManager'
 
 export default class CommonAPIs {
-    static baseURL = constants.baseURL
+    static baseURL = Constants.baseURL
 
     static endpoints = {
         registerUser: CommonAPIs.baseURL + '/api/register',
@@ -13,7 +14,8 @@ export default class CommonAPIs {
         loginUser: CommonAPIs.baseURL + '/api/login',
         logoutUser: CommonAPIs.baseURL + '/api/logout',
         getAllCategory: CommonAPIs.baseURL + '/api/list-parent-category',
-        getCategory: CommonAPIs.baseURL + '/api/list-store-parent-category'
+        getCategory: CommonAPIs.baseURL + '/api/list-store-parent-category',
+        updateProfile: CommonAPIs.baseURL + '/api/setup-profile'
     }
 
     static headers = {
@@ -112,6 +114,38 @@ export default class CommonAPIs {
             let response = await axios.get(url, { headers })
             return Promise.resolve(response.data.data)
         } catch (error) {
+            return Promise.reject(error)
+        }
+    }
+
+    static async updateAvatar(image) {
+        try {
+            const imageData = {
+                uri: image?.path,
+                // type: avatar_file?.type,
+                type: 'multipart/form-data',
+                name: image?.filename || Math.floor(Math.random() * Math.floor(999999999)) + '.jpg'
+            }
+
+            const formData = new FormData()
+            formData.append('_method', 'PUT')
+            formData.append('avatar', imageData)
+
+            const headers = {
+                Authorization: `Bearer ${AppManager.shared.currentUser?.accessToken}`,
+                'Content-Type': 'multipart/form-data'
+            }
+
+            let response = await axios.post(CommonAPIs.endpoints.updateProfile, formData, {
+                headers
+            })
+            let user = new UserModel(response.data?.data)
+            user.accessToken = AppManager.shared.currentUser?.accessToken
+            AppManager.shared.currentUser = user
+            StorageManager.setData(Constants.key.currentUser, user.toDictionary())
+            return Promise.resolve(user)
+        } catch (error) {
+            console.log(error)
             return Promise.reject(error)
         }
     }
