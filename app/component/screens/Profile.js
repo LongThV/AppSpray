@@ -7,6 +7,7 @@ import HeaderShort from '../common/HeaderShort'
 import Constants from '../../controller/Constants'
 import ImgQrCode from '../../component/common/ImgQrCode'
 import { useNavigation } from '@react-navigation/native'
+import AppManager from '../../controller/APIs/AppManager'
 
 let dataQRCode = {
     phone: {
@@ -28,7 +29,15 @@ const ProfileScreen = () => {
     const [isSwitchOn, setIsSwitchOn] = useState(false)
     const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn)
 
-    const [dataInfoUser, setDataInfoUser] = useState([])
+    const getAvatar = () => {
+        if (
+            AppManager.shared.currentUser?.avatar != null &&
+            AppManager.shared.currentUser?.avatar !== ''
+        ) {
+            return { uri: AppManager.shared.currentUser?.avatar }
+        }
+        return Constants.image.imgAvatarDefault
+    }
 
     const onQrcodePhone = () => {
         setDataQR(dataQRCode.phone)
@@ -50,7 +59,7 @@ const ProfileScreen = () => {
             />
             <HeaderShort name='Profile' />
             <View style={styles.boxProfile}>
-                <Image source={Constants.image.imgAvatarDefault} style={styles.imgAvatar} />
+                <Image source={getAvatar()} style={styles.imgAvatar} />
                 <View style={styles.boxInforUser}>
                     <Image source={Constants.image.icQrCode} style={styles.imgQrcode} />
                     <View style={styles.inforUser}>
@@ -154,7 +163,10 @@ const styles = StyleSheet.create({
     },
     imgAvatar: {
         marginTop: 35,
-        marginBottom: 13
+        marginBottom: 13,
+        width: 75,
+        height: 75,
+        borderRadius: 15
     },
     imgQrcode: {
         width: 23,

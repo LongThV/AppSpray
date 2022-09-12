@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import {
     View,
     Text,
@@ -6,7 +6,8 @@ import {
     Image,
     TouchableOpacity,
     ScrollView,
-    TextInput
+    TextInput,
+    LogBox
 } from 'react-native'
 import ImagePicker from 'react-native-image-crop-picker'
 import ActionSheet from 'react-native-actionsheet'
@@ -16,27 +17,20 @@ import HeaderBack from '../common/HeaderBack'
 import Constants from '../../controller/Constants'
 import CommonAPIs from '../../controller/APIs/CommonAPIs'
 import AppManager from '../../controller/APIs/AppManager'
+import StorageManager from '../../controller/APIs/StorageManager'
+
+LogBox.ignoreLogs(['Animated: `useNativeDriver`', 'componentWillReceiveProps'])
 
 const ChangeProfileScreen = () => {
     const refActionSheet = useRef()
     const [profile, setProfile] = useState()
     console.log(profile)
 
-    const getAvatar = () => {
-        if (
-            AppManager.shared.currentUser?.avatar != null &&
-            AppManager.shared.currentUser?.avatar !== ''
-        ) {
-            return { uri: AppManager.shared.currentUser?.avatar }
-        }
-        return Constants.image.imgAvatarDefault
-    }
-
     const updateAvatarUser = (image) => {
         RNProgressHud.show()
         CommonAPIs.updateAvatar(image)
             .then((user) => {
-                setProfile(user)
+                // setProfile(user)
             })
             .catch((error) => {
                 console.log(error)
@@ -76,6 +70,12 @@ const ChangeProfileScreen = () => {
         }
     }
 
+    useEffect(() => {
+        StorageManager.getData(Constants.key.currentUser).then((res) => {
+            setProfile(res)
+        })
+    }, [])
+
     return (
         <>
             <Background />
@@ -83,7 +83,7 @@ const ChangeProfileScreen = () => {
                 <HeaderBack name='Change Profile' />
                 <View style={styles.boxProfile}>
                     <TouchableOpacity onPress={onShowImageActionSheet}>
-                        <Image source={getAvatar()} style={styles.imgAvatar} />
+                        <Image source={{ uri: profile?.avatar }} style={styles.imgAvatar} />
                     </TouchableOpacity>
                     <View style={styles.boxInfo}>
                         <Text style={{ ...styles.textInfo, fontSize: 20 }}>Name</Text>
