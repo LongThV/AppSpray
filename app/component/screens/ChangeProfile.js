@@ -6,8 +6,7 @@ import {
     Image,
     TouchableOpacity,
     ScrollView,
-    TextInput,
-    LogBox
+    TextInput
 } from 'react-native'
 import ImagePicker from 'react-native-image-crop-picker'
 import ActionSheet from 'react-native-actionsheet'
@@ -17,8 +16,6 @@ import HeaderBack from '../common/HeaderBack'
 import Constants from '../../controller/Constants'
 import CommonAPIs from '../../controller/APIs/CommonAPIs'
 import AppManager from '../../controller/APIs/AppManager'
-
-LogBox.ignoreLogs(['Animated: `useNativeDriver`', 'componentWillReceiveProps'])
 
 const ChangeProfileScreen = () => {
     const refActionSheet = useRef()
@@ -54,8 +51,6 @@ const ChangeProfileScreen = () => {
     const openCamera = () => {
         ImagePicker.openCamera({
             mediaType: 'photo',
-            width: 1000,
-            height: 1000,
             cropping: true
         })
             .then((image) => {})
@@ -65,8 +60,6 @@ const ChangeProfileScreen = () => {
     const openLibrary = () => {
         ImagePicker.openPicker({
             mediaType: 'photo',
-            width: 1000,
-            height: 1000,
             cropping: true
         })
             .then((image) => {

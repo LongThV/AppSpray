@@ -30,13 +30,6 @@ const ProfileScreen = () => {
 
     const [dataInfoUser, setDataInfoUser] = useState([])
 
-    const getAvatar = () => {
-        if (AppManager.shared.currentUser?.avatar !== '') {
-            return { uri: AppManager.shared.currentUser?.avatar }
-        }
-        return Constants.image.imgAvatarDefault
-    }
-
     const onQrcodePhone = () => {
         setDataQR(dataQRCode.phone)
         setModalVisible(true)
