@@ -28,6 +28,9 @@ const ProfileScreen = () => {
     const [dataQR, setDataQR] = useState([])
     const [isSwitchOn, setIsSwitchOn] = useState(false)
     const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn)
+    const [profile, setProfile] = useState(AppManager.shared.currentUser)
+
+    const [dataInfoUser, setDataInfoUser] = useState([])
 
     const getAvatar = () => {
         if (
@@ -164,8 +167,8 @@ const styles = StyleSheet.create({
     imgAvatar: {
         marginTop: 35,
         marginBottom: 13,
-        width: 75,
-        height: 75,
+        width: 85,
+        height: 85,
         borderRadius: 15
     },
     imgQrcode: {
