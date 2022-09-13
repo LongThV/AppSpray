@@ -19,7 +19,8 @@ export default Constants = {
         login: 'LoginScreen',
         home: 'HomeScreen',
         tabNavigation: 'TabNavigation',
-        changeProfile: 'ChangeProfileScreen'
+        changeProfile: 'ChangeProfileScreen',
+        profile: 'ProfileScreen'
     },
     image: {
         background: require('../assets/images/img_background.png'),

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native'
-import CommonAPIs from '../../controller/APIs/CommonAPIs'
 import { Switch } from 'react-native-paper'
 import Background from '../common/Background'
 import HeaderShort from '../common/HeaderShort'
@@ -8,6 +7,7 @@ import Constants from '../../controller/Constants'
 import ImgQrCode from '../../component/common/ImgQrCode'
 import { useNavigation } from '@react-navigation/native'
 import AppManager from '../../controller/APIs/AppManager'
+import CommonAPIs from '../../controller/APIs/CommonAPIs'
 
 let dataQRCode = {
     phone: {
@@ -28,9 +28,18 @@ const ProfileScreen = () => {
     const [dataQR, setDataQR] = useState([])
     const [isSwitchOn, setIsSwitchOn] = useState(false)
     const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn)
-    const [profile, setProfile] = useState(AppManager.shared.currentUser)
 
-    const [dataInfoUser, setDataInfoUser] = useState([])
+    const [profile, setProfile] = useState()
+
+    const onQrcodePhone = () => {
+        setDataQR(dataQRCode.phone)
+        setModalVisible(true)
+    }
+
+    const onQrcodeWallet = () => {
+        setDataQR(dataQRCode.wallet)
+        setModalVisible(true)
+    }
 
     const getAvatar = () => {
         if (
@@ -42,15 +51,19 @@ const ProfileScreen = () => {
         return Constants.image.imgAvatarDefault
     }
 
-    const onQrcodePhone = () => {
-        setDataQR(dataQRCode.phone)
-        setModalVisible(true)
+    const getInfoUser = async () => {
+        await CommonAPIs.getUserProfile()
+            .then((user) => {
+                setProfile(user)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
 
-    const onQrcodeWallet = () => {
-        setDataQR(dataQRCode.wallet)
-        setModalVisible(true)
-    }
+    useEffect(() => {
+        getInfoUser()
+    }, [])
 
     return (
         <ScrollView style={styles.container}>
